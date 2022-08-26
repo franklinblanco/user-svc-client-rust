@@ -99,7 +99,7 @@ dependencies = [
 [[package]]
 name = "dev-dtos"
 version = "0.1.0"
-source = "git+https://backend:Eo1n1TPsyWV7wwo9uFwgUJGKKheMM6paM2mDkVPA4zqkh5dt6Q6XPkbtojzYQudQsM84vSwKmhHHTPjyn535d6NLBmA3meeGj0Gb8if4sceAwvySdmzedg5mN2P5zzQt@gitea.blancoinfante.com/blancoinfante_backend/dev-dtos-rust.git#c7a33999cab370c464ddb6067d12f78d2ae964f3"
+source = "git+https://backend:Eo1n1TPsyWV7wwo9uFwgUJGKKheMM6paM2mDkVPA4zqkh5dt6Q6XPkbtojzYQudQsM84vSwKmhHHTPjyn535d6NLBmA3meeGj0Gb8if4sceAwvySdmzedg5mN2P5zzQt@gitea.blancoinfante.com/blancoinfante_backend/dev-dtos-rust.git#d8e899e4f208be54d1e7f93a2948de55309e88f3"
 dependencies = [
  "chrono",
  "serde",
@@ -718,9 +718,9 @@ dependencies = [
 
 [[package]]
 name = "serde_json"
-version = "1.0.83"
+version = "1.0.85"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "38dd04e3c8279e75b31ef29dbdceebfe5ad89f4d0937213c53f7d49d01b3d5a7"
+checksum = "e55a28e3aaef9d5ce0506d0a14dbba8054ddc7e499ef522dd8b26859ec9d4a44"
 dependencies = [
  "itoa",
  "ryu",
@@ -765,9 +765,9 @@ checksum = "2fd0db749597d91ff862fd1d55ea87f7855a744a8425a64695b6fca237d1dad1"
 
 [[package]]
 name = "socket2"
-version = "0.4.4"
+version = "0.4.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "66d72b759436ae32898a2af0a14218dbf55efde3feeb170eb623637db85ee1e0"
+checksum = "10c98bba371b9b22a71a9414e420f92ddeb2369239af08200816169d5e2dd7aa"
 dependencies = [
  "libc",
  "winapi",
