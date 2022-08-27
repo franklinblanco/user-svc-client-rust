@@ -4,7 +4,7 @@ use reqwest::{Client, Method};
 use crate::middleware::client::perform_request;
 
 //TODO: Move this into a separate service
-const BASE_URL_USER_SVC: &str = "http://localhost:8080";
+const BASE_URL_USER_SVC: &str = "http://backend.blancoinfante.com";
 
 pub async fn authenticate_user_with_token(client: &Client, user: &UserForAuthenticationDto, user_id: &i32) -> Result<User, Error> {
     perform_request::<&UserForAuthenticationDto, User>(BASE_URL_USER_SVC.to_string(), client, Method::POST, format!("/user/auth/token/{}", user_id), Some(user), 200, vec![(String::from("auth-token"), user.token.clone())]).await
