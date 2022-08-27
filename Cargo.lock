@@ -99,7 +99,7 @@ dependencies = [
 [[package]]
 name = "dev-dtos"
 version = "0.1.0"
-source = "git+https://backend:Eo1n1TPsyWV7wwo9uFwgUJGKKheMM6paM2mDkVPA4zqkh5dt6Q6XPkbtojzYQudQsM84vSwKmhHHTPjyn535d6NLBmA3meeGj0Gb8if4sceAwvySdmzedg5mN2P5zzQt@gitea.blancoinfante.com/blancoinfante_backend/dev-dtos-rust.git#d8e899e4f208be54d1e7f93a2948de55309e88f3"
+source = "git+https://backend:Eo1n1TPsyWV7wwo9uFwgUJGKKheMM6paM2mDkVPA4zqkh5dt6Q6XPkbtojzYQudQsM84vSwKmhHHTPjyn535d6NLBmA3meeGj0Gb8if4sceAwvySdmzedg5mN2P5zzQt@gitea.blancoinfante.com/blancoinfante_backend/dev-dtos-rust.git#8c59fdee30acd9f7dbaafd28660e47f2d275eb61"
 dependencies = [
  "chrono",
  "serde",
