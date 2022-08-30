@@ -10,7 +10,6 @@ pub async fn perform_request<B: Serialize, R: DeserializeOwned>(
     expected_status_code: u16,
     headers: Vec<(String, String)>,
 ) -> Result<R, Error> {
-
     let mut req_incomplete =
         client.request(method, format!("{url}{path}", url = base_url, path = path));
 
@@ -22,6 +21,7 @@ pub async fn perform_request<B: Serialize, R: DeserializeOwned>(
         Some(b) => req_incomplete.json(&b),
         None => req_incomplete,
     };
+    println!("{:?}", req_complete);
     match req_complete.send().await {
         // Error handling here
         Ok(res) => {
