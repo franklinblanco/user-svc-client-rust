@@ -13,13 +13,13 @@ pub async fn perform_request<B: Serialize, R: DeserializeOwned>(
     let mut req_incomplete =
         client.request(method, format!("{url}{path}", url = base_url, path = path));
 
-    //for header in headers {
-    //    req_incomplete = req_incomplete.header(&header.0, &header.1);
-    //}
+    for header in headers {
+        req_incomplete = req_incomplete.header(&header.0, &header.1);
+    }
 
     let req_complete = match body {
         Some(b) => req_incomplete.json(&b),
-        None => req_incomplete,
+        None => req_incomplete.header("content-length", 0),
     };
     println!("{:?}", req_complete);
     match req_complete.send().await {
