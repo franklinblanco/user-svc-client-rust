@@ -1,4 +1,4 @@
-use dev_dtos::enums::error::Error;
+use actix_web_utils::{enums::error::Error, dtos::message::MessageResource};
 use serde::{Serialize, de::DeserializeOwned};
 
 pub async fn perform_request<B: Serialize, R: DeserializeOwned>(
@@ -30,7 +30,7 @@ pub async fn perform_request<B: Serialize, R: DeserializeOwned>(
                 true => {
                     match res.json::<R>().await {
                         Ok(resp_dto) => Ok(resp_dto), //  Return correctly deserialized obj
-                        Err(err) => Err(Error::CommunicatorError(err.to_string())),
+                        Err(err) => Err(Error::ClientError(MessageResource::new_from_err(err))),
                     }
                 }
                 false => {
@@ -38,14 +38,14 @@ pub async fn perform_request<B: Serialize, R: DeserializeOwned>(
                     Err(Error::UnexpectedStatusCode(
                         expected_status_code,
                         res.status().as_u16(),
-                        res.text().await.unwrap(),
+                        MessageResource::new_from_str(&res.text().await.unwrap()),
                     ))
                 }
             }
         }
         Err(e) => {
             //  Request couldn't be sent
-            Err(Error::NetworkError(e.to_string()))
+            Err(Error::ClientError(MessageResource::new_from_err(e)))
         }
     }
 }
