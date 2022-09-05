@@ -14,8 +14,8 @@ pub async fn authenticate_user_with_token(client: &Client, user: &UserForAuthent
 pub async fn create_user(client: &Client, user: &UserForCreationDto) -> Result<Token, Error> {
     perform_request::<&UserForCreationDto, Token>(BASE_URL_USER_SVC.to_string(), client, Method::POST, "/user".to_string(), Some(user), 200, vec![]).await
 }
-pub async fn authenticate_user_with_password(client: &Client, user: &UserForLoginDto) -> Result<User, Error> {
-    perform_request::<&UserForLoginDto, User>(BASE_URL_USER_SVC.to_string(), client, Method::POST, "/user/auth/password".to_string(), Some(user), 200, vec![]).await
+pub async fn authenticate_user_with_password(client: &Client, user: &UserForLoginDto) -> Result<Token, Error> {
+    perform_request::<&UserForLoginDto, Token>(BASE_URL_USER_SVC.to_string(), client, Method::POST, "/user/auth/password".to_string(), Some(user), 200, vec![]).await
 }
 pub async fn refresh_token_for_user(client: &Client, user: &UserForAuthenticationDto, user_id: &i32) -> Result<Token, Error> {
     perform_request::<&UserForAuthenticationDto, Token>(BASE_URL_USER_SVC.to_string(), client, Method::PATCH, format!("/user/refresh/{}", user_id), None, 200, vec![(String::from("refresh-token"), user.token.clone())]).await
