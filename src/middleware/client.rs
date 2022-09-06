@@ -38,7 +38,10 @@ pub async fn perform_request<B: Serialize, R: DeserializeOwned>(
                     Err(Error::UnexpectedStatusCode(
                         expected_status_code,
                         res.status().as_u16(),
-                        MessageResource::new_from_str(&res.text().await.unwrap()),
+                        match res.json::<MessageResource>().await {
+                            Ok(message) => message,
+                            Err(e) => MessageResource::new_from_err(e.to_string()),
+                        },
                     ))
                 }
             }
