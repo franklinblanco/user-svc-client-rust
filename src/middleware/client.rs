@@ -107,7 +107,7 @@ pub async fn perform_request_without_client<B: Serialize, R: DeserializeOwned>(
     }
 }
 /// Same as function above but blocking
-pub async fn perform_request_without_client_sync<B: Serialize, R: DeserializeOwned>(
+pub fn perform_request_without_client_sync<B: Serialize, R: DeserializeOwned>(
     base_url: String,
     method: reqwest::Method,
     path: String,
