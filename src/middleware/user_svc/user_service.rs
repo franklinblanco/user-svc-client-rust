@@ -1,5 +1,5 @@
-use actix_web_utils::enums::error::Error;
 use dev_dtos::{dtos::user::user_dtos::{UserForCreationDto, UserForLoginDto, UserForAuthenticationDto}, domain::user::{user::User, token::Token}};
+use err::Error;
 use reqwest::{Client, Method};
 
 use crate::middleware::client::perform_request;

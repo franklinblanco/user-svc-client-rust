@@ -1,4 +1,4 @@
-use actix_web_utils::{enums::error::Error, dtos::message::MessageResource};
+use err::{Error, MessageResource};
 use reqwest::Client;
 use serde::{Serialize, de::DeserializeOwned};
 
@@ -31,7 +31,7 @@ pub async fn perform_request<B: Serialize, R: DeserializeOwned>(
                 true => {
                     match res.json::<R>().await {
                         Ok(resp_dto) => Ok(resp_dto), //  Return correctly deserialized obj
-                        Err(err) => Err(Error::ClientError(MessageResource::new_from_err(err))),
+                        Err(err) => Err(Error::Serde(MessageResource::from(err))),
                     }
                 }
                 false => {
@@ -41,7 +41,7 @@ pub async fn perform_request<B: Serialize, R: DeserializeOwned>(
                         res.status().as_u16(),
                         match res.json::<Vec<MessageResource>>().await {
                             Ok(messages) => messages,
-                            Err(e) => vec![MessageResource::new_from_err(e.to_string())],
+                            Err(e) => vec![MessageResource::from(e)],
                         },
                     ))
                 }
@@ -49,7 +49,7 @@ pub async fn perform_request<B: Serialize, R: DeserializeOwned>(
         }
         Err(e) => {
             //  Request couldn't be sent
-            Err(Error::ClientError(MessageResource::new_from_err(e)))
+            Err(Error::Network(MessageResource::from(e)))
         }
     }
 }
@@ -84,7 +84,7 @@ pub async fn perform_request_without_client<B: Serialize, R: DeserializeOwned>(
                 true => {
                     match res.json::<R>().await {
                         Ok(resp_dto) => Ok(resp_dto), //  Return correctly deserialized obj
-                        Err(err) => Err(Error::ClientError(MessageResource::new_from_err(err))),
+                        Err(err) => Err(Error::Serde(MessageResource::from(err))),
                     }
                 }
                 false => {
@@ -94,7 +94,7 @@ pub async fn perform_request_without_client<B: Serialize, R: DeserializeOwned>(
                         res.status().as_u16(),
                         match res.json::<Vec<MessageResource>>().await {
                             Ok(messages) => messages,
-                            Err(e) => vec![MessageResource::new_from_err(e.to_string())],
+                            Err(e) => vec![MessageResource::from(e)],
                         },
                     ))
                 }
@@ -102,7 +102,7 @@ pub async fn perform_request_without_client<B: Serialize, R: DeserializeOwned>(
         }
         Err(e) => {
             //  Request couldn't be sent
-            Err(Error::ClientError(MessageResource::new_from_err(e)))
+            Err(Error::Network(MessageResource::from(e)))
         }
     }
 }
@@ -136,7 +136,7 @@ pub fn perform_request_without_client_sync<B: Serialize, R: DeserializeOwned>(
                 true => {
                     match res.json::<R>() {
                         Ok(resp_dto) => Ok(resp_dto), //  Return correctly deserialized obj
-                        Err(err) => Err(Error::ClientError(MessageResource::new_from_err(err))),
+                        Err(err) => Err(Error::Serde(MessageResource::from(err))),
                     }
                 }
                 false => {
@@ -146,7 +146,7 @@ pub fn perform_request_without_client_sync<B: Serialize, R: DeserializeOwned>(
                         res.status().as_u16(),
                         match res.json::<Vec<MessageResource>>() {
                             Ok(messages) => messages,
-                            Err(e) => vec![MessageResource::new_from_err(e.to_string())],
+                            Err(e) => vec![MessageResource::from(e)],
                         },
                     ))
                 }
@@ -154,7 +154,7 @@ pub fn perform_request_without_client_sync<B: Serialize, R: DeserializeOwned>(
         }
         Err(e) => {
             //  Request couldn't be sent
-            Err(Error::ClientError(MessageResource::new_from_err(e)))
+            Err(Error::Network(MessageResource::from(e)))
         }
     }
 }

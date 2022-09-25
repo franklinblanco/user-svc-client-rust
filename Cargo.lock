@@ -183,11 +183,11 @@ dependencies = [
 
 [[package]]
 name = "actix-web-utils"
-version = "0.2.14"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3ebb116655f5320fb6c805b011884f54980df2e88fce92758bdd5b0579032e15"
+version = "0.2.21"
+source = "git+https://github.com/franklinblanco/actix-web-utils.git#416e44e849a4911fde589424a703236585192365"
 dependencies = [
  "actix-web",
+ "err",
  "log",
  "serde",
  "serde_json",
@@ -423,6 +423,7 @@ version = "0.1.0"
 dependencies = [
  "actix-web-utils",
  "dev-dtos",
+ "err",
  "reqwest",
  "serde",
  "tokio",
@@ -431,7 +432,7 @@ dependencies = [
 [[package]]
 name = "dev-dtos"
 version = "0.1.0"
-source = "git+https://backend:Eo1n1TPsyWV7wwo9uFwgUJGKKheMM6paM2mDkVPA4zqkh5dt6Q6XPkbtojzYQudQsM84vSwKmhHHTPjyn535d6NLBmA3meeGj0Gb8if4sceAwvySdmzedg5mN2P5zzQt@gitea.blancoinfante.com/blancoinfante_backend/dev-dtos-rust.git#80abf74269baf13b9fc1d186516564b0d4521270"
+source = "git+https://github.com/franklinblanco/user-dtos.git#3b3ffde695753edb4e7ffdf722299b372f2c0bd0"
 dependencies = [
  "chrono",
  "serde",
@@ -454,6 +455,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9852635589dc9f9ea1b6fe9f05b50ef208c85c834a562f0c6abb1c475736ec2b"
 dependencies = [
  "cfg-if",
+]
+
+[[package]]
+name = "err"
+version = "0.1.1"
+source = "git+https://github.com/franklinblanco/err.git#42237f4a4be71530933f920f7e5eb6dbf1d0c75e"
+dependencies = [
+ "serde",
 ]
 
 [[package]]
