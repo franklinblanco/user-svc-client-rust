@@ -13,5 +13,5 @@ serde = { version = "1.0", features = ["derive"] }
 
 #openssl = { version = "0.10", features = ["vendored"] }
 err = { git = "https://github.com/franklinblanco/err.git" }
-dev-dtos = { git = "https://github.com/franklinblanco/user-dtos.git" }
+dev-dtos = { git = "https://github.com/franklinblanco/user-svc-dtos-rust.git" }
 actix-web-utils = { git = "https://github.com/franklinblanco/actix-web-utils.git" }
